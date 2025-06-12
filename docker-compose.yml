@@ -1,0 +1,21 @@
+# A simple Docker Compose file for running PostgreSQL 16-alpine.
+
+services:
+  db:
+    # Use the official PostgreSQL 16 image based on Alpine Linux
+    image: postgres:16-alpine
+
+    # Restart the container automatically if it stops, unless manually stopped
+    restart: unless-stopped
+
+    # Environment variables for PostgreSQL configuration
+    # IMPORTANT: Change the password to a secure, private value.
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=mysecretpassword
+      - POSTGRES_DB=mydatabase
+
+    # Map the host port 5432 to the container's port 5432
+    # You can change the host port (e.g., "5433:5432") if 5432 is already in use on your machine.
+    ports:
+      - "5432:5432"
